@@ -19,6 +19,7 @@
     }
   </style>
   <script>
+    const password = "cleo"; // Définissez votre mot de passe ici
     const challenges = {
       "Alice": "Faire fermer les volets à Martin",
       "Martin": "Donner un verre d'eau à Sarah",
@@ -26,6 +27,16 @@
       "Paul": "Chanter une chanson à Julie",
       "Julie": "Faire passer une serviette à Paul"
     };
+
+    function checkPassword() {
+      const enteredPassword = document.getElementById("password").value.trim();
+      if (enteredPassword === password) {
+        document.getElementById("passwordPrompt").style.display = "none";
+        document.getElementById("challengePrompt").style.display = "block";
+      } else {
+        alert("Mot de passe incorrect !");
+      }
+    }
 
     function getChallenge() {
       const name = document.getElementById("name").value.trim();
@@ -39,10 +50,18 @@
   </script>
 </head>
 <body>
-  <h1>Défis Secrets</h1>
-  <p>Entrez votre prénom pour découvrir votre défi :</p>
-  <input type="text" id="name" placeholder="Entrez votre prénom">
-  <button onclick="getChallenge()">Obtenir mon défi</button>
-  <p id="result"></p>
+  <div id="passwordPrompt">
+    <h1>Défis Secrets</h1>
+    <p>Entrez le mot de passe pour accéder à votre défi :</p>
+    <input type="password" id="password" placeholder="Mot de passe">
+    <button onclick="checkPassword()">Valider</button>
+  </div>
+  <div id="challengePrompt" style="display: none;">
+    <h1>Défis Secrets</h1>
+    <p>Entrez votre prénom pour découvrir votre défi :</p>
+    <input type="text" id="name" placeholder="Entrez votre prénom">
+    <button onclick="getChallenge()">Obtenir mon défi</button>
+    <p id="result"></p>
+  </div>
 </body>
 </html>
